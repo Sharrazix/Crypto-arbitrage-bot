@@ -31,8 +31,8 @@ headers = {
     'user-agent': UserAgent().random
 }
 
-# p2pcorn '5962028527:AAETpPARwLfOPi_aB8z0OBlGVkwB6xXrIFg'
-bot = Bot(token='6257357493:AAFgNPw9m7BocURS7L6DHFdlX6IR-oCe3Wc')
+# Type your token here
+bot = Bot(token='YOUR_TOKEN')
 dp = Dispatcher(bot)
 
 crypto_settings = {
@@ -47,10 +47,7 @@ crypto_settings = {
 }
 
 admins_list = [
-    '1867230261',
-    '5686907906',
-    '1802011690',
-    '1564663852',
+      'YOUR_ID',
 ]
 
 chat_id = '-1001692516543'
@@ -60,7 +57,7 @@ run_status = str()
 
 black_list = ['QUACKUSDT', 'REDUSDT', 'BABYDOGEUSDT', 'REVOUSDT',]
 
-
+#functions that starts everything in 2 languages
 async def run_cryptoEN():
     while crypto_settings.get("admin")["run"]:
         try:
