@@ -310,7 +310,7 @@ async def huobi():
                                         [float(crypto.get('bid')) * 0.998, float(crypto.get('ask')) * 1.002]})
         return huobi_price
     except (AttributeError, TypeError):
-        print("Закончил хуоби")
+
         return None
 
 async def bybit():
@@ -339,7 +339,7 @@ async def bybit():
                                 [float(crypto.get('bestBidPrice')) * 0.999, float(crypto.get('bestAskPrice')) * 1.001]})
         return bybit_price
     except (AttributeError, TypeError):
-        print("Закончил байбит")
+
         return None
 
 async def kucoin():
@@ -369,7 +369,7 @@ async def kucoin():
                                              [float(crypto.get('buy')) * 0.999, float(crypto.get('sell')) * 1.001]})
         return kucoin_price
     except (AttributeError, TypeError):
-        print("Закончил кукоин")
+  
         return None
 
 async def gateio():
@@ -399,7 +399,7 @@ async def gateio():
                                    [float(crypto.get('highest_bid')) * 0.998, float(crypto.get('lowest_ask')) * 1.002]})
         return gateio_price
     except (AttributeError, TypeError):
-        print("Закончил гейтио")
+
         return None
 
 async def mexc():
@@ -429,7 +429,7 @@ async def mexc():
                                         [float(crypto.get('bidPrice')) * 0.998, float(crypto.get('askPrice')) * 1.002]})
         return mexc_price
     except (AttributeError, TypeError):
-        print("Закончил мехц")
+ 
         return None
 
 async def okx():
@@ -520,7 +520,7 @@ async def poloniex():
                                                         float(response.get(crypto)['lowestAsk']) * 1.0015]})
         return poloniex_price
     except (AttributeError, TypeError):
-        print("Закончил полонех")
+
         return None
 
 async def bitget():
@@ -551,7 +551,7 @@ async def bitget():
                                       [float(crypto.get('buyOne')) * 0.999, float(crypto.get('sellOne')) * 1.001]})
         return bitget_price
     except (AttributeError, TypeError):
-        print("Закончил битджет")
+
         return None
 
 cex_func = {
@@ -568,8 +568,8 @@ cex_func = {
     }
 
 async def binance_chain():
-    KEY = "jJDSZcCeEHv57DGoje9rtxvJtAct39U6swkfDN3mSSwouN6exUx7FoPlIbWI76So"
-    SECRET = "99F56iCmjHRH6aLeKCmKmIsdU8TS51fg8zldYoqO1p38JfBnArpO4qLifsSMPQ5m"
+    KEY = "Your_key"
+    SECRET = "Your_secret"
     BASE_URL = "https://api.binance.com"
 
     query_string = "timestamp={}".format(int(time.time() * 1000))
@@ -590,7 +590,7 @@ async def binance_chain():
                 response = await response.json()
     except (aiohttp.ClientError, aiohttp.ClientConnectionError, aiohttp.ClientConnectorError,
             asyncio.exceptions.TimeoutError):
-        print("Закончил бинанс 2")
+
         return None
 
     chain_rename = {
@@ -614,7 +614,7 @@ async def binance_chain():
                          [value_.get('depositEnable'), value_.get('withdrawEnable'), float(value_.get('withdrawFee'))]})
         return binance_status
     except (AttributeError, TypeError, KeyError):
-        print("Закончил бинанс 3")
+
         return None
 
 async def huobi_chain():
@@ -630,7 +630,7 @@ async def huobi_chain():
                 response = await response.json()
     except (aiohttp.ClientError, aiohttp.ClientConnectionError, aiohttp.ClientConnectorError,
             asyncio.exceptions.TimeoutError):
-        print("Закончил хуоби 2")
+
         return None
 
     chain_rename = {
@@ -671,8 +671,8 @@ async def huobi_chain():
         return None
 
 async def bybit_chain():
-    api_key = 'a6C644LXqUtcQiCdJN'
-    secret_key = 'I80WRDINApk9Bwah4wrwcUWta4TmEP7AbjTg'
+    api_key = 'Your_api_key'
+    secret_key = 'Your_secret'
 
     recv_window = str(5000)
     time_stamp = str(int(time.time() * 10 ** 3))
@@ -760,7 +760,7 @@ async def kucoin_chain():
                 response = await response.json()
     except (aiohttp.ClientError, aiohttp.ClientConnectionError, aiohttp.ClientConnectorError,
             asyncio.exceptions.TimeoutError):
-        print("Закончил кукоин 2")
+
         return None
 
     kucoin_status = {
@@ -1762,7 +1762,6 @@ async def comparison_allEN():
                             price.append(float(amount[i][0]))
                             price_.append(float(amount_[i][0]))
                     if len(qty) > 0 and len(qty_) > 0:
-                        print("Я сделал 3")
                         min_qty = min(sum(qty), sum(qty_))
                         min_price = min(price)
                         max_price = max(price)
@@ -1776,11 +1775,9 @@ async def comparison_allEN():
                         profit_ = (profit - fee) * fees.get(value[2])
                         profit_usd_ = profit_ * avg_price_
                         if profit_usd_ > profit_usd:
-                            print("Я сделал 4")
                             total_profit = ((profit_usd_ - profit_usd) / profit_usd) * 100
                             total_profit = round(total_profit, 2)
                             if total_profit > crypto_settings.get("admin")["percent"]:
-                                print("Я сделал 5")
                                 markup = types.InlineKeyboardMarkup()
                                 btn1 = types.InlineKeyboardButton(value[1].capitalize(),
                                                                   url=f'{await url(value[1], value[0])}')
